@@ -9,3 +9,7 @@ __pycache__/
 # Virtual environments
 venv/
 env/
+
+# Local data files
+All-files/
+practice_exercises/
