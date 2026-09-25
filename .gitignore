@@ -1,4 +1,4 @@
-# Byte-compiled / optimized / DLL files
+# Byte-compiled/optimized/DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -10,6 +10,6 @@ __pycache__/
 venv/
 env/
 
-# Local data files
+#Local data files
 All-files/
 practice_exercises/
