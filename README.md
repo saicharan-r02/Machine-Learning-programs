@@ -7,7 +7,6 @@
 An end-to-end clinical machine learning system designed to predict cardiovascular and metabolic disease risk using 13 clinical biomarkers, hemodynamics, and lifestyle factors. Features automated multi-model benchmarking, hyperparameter optimization, ROC-AUC diagnostic analysis, real-time risk triage inference, and an interactive HTML analytics dashboard.
 
 ---
-
 ## 📌 Project Highlights
 
 - **Multi-Model Benchmark Architecture**: Trains and cross-evaluates Logistic Regression, Decision Trees, Random Forest, Support Vector Machines (SVM), and Gradient Boosting Classifiers.
@@ -16,11 +15,9 @@ An end-to-end clinical machine learning system designed to predict cardiovascula
 - **Diagnostic Visualizations**: High-resolution exports for ROC Curves, Confusion Matrices, Gini Feature Importance, and Model Comparison.
 - **Interactive Executive Dashboard**: Self-contained HTML report with glassmorphic UI and responsive metrics.
 - **Archived Practice Library**: Historical daily exercises organized in [`practice_exercises/`](practice_exercises/).
-
 ---
 
 ## 🏗️ System Architecture
-
 ```
 Machine-Learning/
 ├── practice_exercises/          <- Daily problem exercises & foundational scripts
@@ -45,7 +42,6 @@ Machine-Learning/
 ├── run_pipeline.py              <- Main single-command orchestrator
 └── README.md
 ```
-
 ---
 
 ## 📊 Benchmark Performance Summary
@@ -66,12 +62,10 @@ Machine-Learning/
 ```bash
 python run_pipeline.py
 ```
-
 ### 2. Perform Live Patient Risk Prediction
 ```bash
 python src/predict.py
 ```
-
 ### 3. Open the Interactive HTML Dashboard
 Open `reports/health_analytics_dashboard.html` in your browser.
 
