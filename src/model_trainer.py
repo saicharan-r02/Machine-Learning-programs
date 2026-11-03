@@ -18,14 +18,9 @@ def get_base_models():
     }
 
 def train_and_tune_models(X_train_scaled,y_train,X_test_scaled,y_test):
-    """
-    Trains all benchmark models, optimizes hyperparameters on the top ensemble,
-    and returns trained estimators with evaluation probabilities.
-    """
     os.makedirs(MODELS_DIR,exist_ok=True)
     models=get_base_models()
     results={}
-
     print(" [HealthPredict AI] Multi-Model Clinical Benchmarking")
 
     for name,model in models.items():
@@ -57,7 +52,6 @@ def train_and_tune_models(X_train_scaled,y_train,X_test_scaled,y_test):
     )
     grid_search.fit(X_train_scaled,y_train)
     best_gb=grid_search.best_estimator_
-
     y_pred_gb=best_gb.predict(X_test_scaled)
     y_prob_gb=best_gb.predict_proba(X_test_scaled)[:,1]
 
@@ -71,7 +65,6 @@ def train_and_tune_models(X_train_scaled,y_train,X_test_scaled,y_test):
     }
     print(f"[OK] Tuned Model Test Accuracy: {best_gb.score(X_test_scaled,y_test)*100:.2f}%")
     print(f"[OK] Optimal Hyperparameters: {grid_search.best_params_}")
-
     champion_path=os.path.join(MODELS_DIR,"best_model.joblib")
     joblib.dump(best_gb,champion_path)
     print(f"[OK] Champion model saved to: {champion_path}")
