@@ -18,9 +18,7 @@ def evaluate_all_models(results,y_test,feature_names):
     os.makedirs(FIGURES_DIR,exist_ok=True)
     sns.set_theme(style="whitegrid",palette="muted")
     plt.rcParams.update({"font.sans-serif": "Arial","figure.dpi": 300})
-
     metrics_list=[]
-
     print(f"{'Model':<35} {'Accuracy':<10} {'Precision':<10} {'Recall':<10} {'F1-Score':<10} {'ROC-AUC':<10}")
 
     for name,data in results.items():
@@ -34,16 +32,14 @@ def evaluate_all_models(results,y_test,feature_names):
         auc=roc_auc_score(y_test,y_prob)
 
         metrics_list.append({
-            "Model": name,
-            "Accuracy": acc,
-            "Precision": prec,
-            "Recall": rec,
-            "F1-Score": f1,
-            "ROC-AUC": auc
+            "Model":name,
+            "Accuracy":acc,
+            "Precision":prec,
+            "Recall":rec,
+            "F1-Score":f1,
+            "ROC-AUC":auc
         })
-
         print(f"{name:<35} {acc*100:6.2f}%   {prec*100:6.2f}%   {rec*100:6.2f}%   {f1:6.4f}     {auc:6.4f}")
-
     metrics_df=pd.DataFrame(metrics_list)
 
     plt.figure(figsize=(9,7))
@@ -108,26 +104,25 @@ def evaluate_all_models(results,y_test,feature_names):
                 ha="left",va="center",fontsize=10,fontweight="bold"
             )
         plt.title("Clinical Biomarker Feature Importance (Gini Impurity Reduction)",fontsize=13,fontweight="bold",pad=12)
-        plt.xlabel("Relative Importance Weight", fontsize=11, fontweight="bold")
-        plt.ylabel("Clinical Predictor", fontsize=11, fontweight="bold")
-        plt.xlim(0, max(importances) * 1.18)
+        plt.xlabel("Relative Importance Weight",fontsize=11,fontweight="bold")
+        plt.ylabel("Clinical Predictor",fontsize=11,fontweight="bold")
+        plt.xlim(0, max(importances)*1.18)
         plt.tight_layout()
-        fi_path = os.path.join(FIGURES_DIR, "feature_importance.png")
-        plt.savefig(fi_path, dpi=300)
+        fi_path = os.path.join(FIGURES_DIR,"feature_importance.png")
+        plt.savefig(fi_path,dpi=300)
         plt.close()
         print(f"[OK] Saved Feature Importance to: {fi_path}")
 
-    plt.figure(figsize=(11, 6))
-    melted_df = metrics_df.melt(id_vars="Model", value_vars=["Accuracy", "Precision", "Recall", "ROC-AUC"],
-                                var_name="Metric", value_name="Score")
-    sns.barplot(x="Model", y="Score", hue="Metric", data=melted_df, palette="viridis")
-    plt.xticks(rotation=20, ha="right", fontweight="bold")
-    plt.ylim(0.5, 1.02)
-    plt.title("Comparative Evaluation Across Machine Learning Algorithms", fontsize=13, fontweight="bold", pad=12)
-    plt.ylabel("Performance Score", fontsize=11, fontweight="bold")
-    plt.legend(loc="lower right", frameon=True)
+    plt.figure(figsize=(11,6))
+    melted_df metrics_df.melt(id_vars="Model",value_vars=["Accuracy","Precision","Recall","ROC-AUC"],var_name="Metric",value_name="Score")
+    sns.barplot(x="Model",y="Score",hue="Metric",data=melted_df,palette="viridis")
+    plt.xticks(rotation=20,ha="right",fontweight="bold")
+    plt.ylim(0.5,1.02)
+    plt.title("Comparative Evaluation Across Machine Learning Algorithms",fontsize=13,fontweight="bold",pad=12)
+    plt.ylabel("Performance Score",fontsize=11,fontweight="bold")
+    plt.legend(loc="lower right",frameon=True)
     plt.tight_layout()
-    comp_path = os.path.join(FIGURES_DIR, "model_comparison.png")
+    comp_path=os.path.join(FIGURES_DIR,"model_comparison.png")
     plt.savefig(comp_path, dpi=300)
     plt.close()
     print(f"[OK] Saved Model Comparison to: {comp_path}")
